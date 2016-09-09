@@ -1,0 +1,55 @@
+SOURCES += $$PWD/PVRTBoneBatch.cpp  \
+			$$PWD/PVRTDecompress.cpp  \
+			$$PWD/PVRTError.cpp  \
+			$$PWD/PVRTFixedPoint.cpp  \
+			$$PWD/PVRTGeometry.cpp \
+			$$PWD/PVRTMatrixF.cpp \
+			$$PWD/PVRTMatrixX.cpp \
+			$$PWD/PVRTMisc.cpp \
+			$$PWD/PVRTModelPOD.cpp \
+			$$PWD/PVRTPFXParser.cpp \
+			$$PWD/PVRTPrint3D.cpp \
+			$$PWD/PVRTQuaternionF.cpp \
+			$$PWD/PVRTQuaternionX.cpp \
+			$$PWD/PVRTResourceFile.cpp \
+			$$PWD/PVRTShadowVol.cpp \
+			$$PWD/PVRTString.cpp \
+			$$PWD/PVRTTexture.cpp \
+			$$PWD/PVRTTrans.cpp \
+			$$PWD/PVRTTriStrip.cpp \
+			$$PWD/PVRTUnicode.cpp \
+			$$PWD/PVRTVector.cpp \
+			$$PWD/PVRTVertex.cpp \
+
+HEADERS += $$PWD/PVRTArray.h  \
+			$$PWD/PVRTBackground.h  \
+			$$PWD/PVRTBoneBatch.h  \
+			$$PWD/PVRTDecompress.h  \
+			$$PWD/PVRTError.h  \
+			$$PWD/PVRTFixedPoint.h \			
+			$$PWD/PVRTGeometry.h \
+			$$PWD/PVRTGlobal.h  \
+			$$PWD/PVRTHash.h \
+			$$PWD/PVRTMap.h \
+			$$PWD/PVRTMathTable.h \
+			$$PWD/PVRTMatrix.h \
+			$$PWD/PVRTMemoryFileSystem.h \
+			$$PWD/PVRTMisc.h \
+			$$PWD/PVRTModelPOD.h \
+			$$PWD/PVRTools.h \
+			$$PWD/PVRTPFXParser.h \
+			$$PWD/PVRTPrint3DArialBold.h \
+			$$PWD/PVRTPrint3D.h \
+			$$PWD/PVRTPrint3DIMGLogo.h \
+			$$PWD/PVRTQuaternion.h \
+			$$PWD/PVRTResourceFile.h \
+			$$PWD/PVRTShadowVol.h \
+			$$PWD/PVRTSingleton.h \
+			$$PWD/PVRTSkipGraph.h \
+			$$PWD/PVRTString.h \
+			$$PWD/PVRTTexture.h \
+			$$PWD/PVRTTrans.h  \
+			$$PWD/PVRTTriStrip.h \			
+			$$PWD/PVRTUnicode.h \			
+			$$PWD/PVRTVector.h \			
+			$$PWD/PVRTVertex.h 			

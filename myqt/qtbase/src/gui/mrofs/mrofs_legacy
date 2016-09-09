@@ -1,0 +1,1 @@
+All src files in this directory take effects when QT_MROFS_LEGACY has been defined.

@@ -1,0 +1,51 @@
+********************** TODO ***************************
+
+* 代码重构
+    提取公共代码到 compositor 的实现基类, 放入 platformsupport.
+    波形管理模块放入 platformsupport.
+
+* 支持 windows 后端的波形合成, 解决中央站 64 床的波形性能问题
+
+* mrofs_pvr2d 后端遗留问题解决
+1, 关窗残留
+2, 刷新残留(http://10.1.65.71/bugzilla/show_bug.cgi?id=38705)
+3, 鼠标光标拖影
+
+* compositor 实例化模式细分
+模式1: 支持多个 compositor 实例共存, 1 个 compositor 只负责 1 个 tlw 内部的合成(ui + wave + others), 适用于 os 有 gui 后端的平台.
+机制: 
+    在 windows/xorg/mac/android/ios 中, 多个 tlw 的综合显示输出由后端 os 的 gui 负责, qt 只负责单个 tlw 内部的合成.
+    波形屏位于多个它所属的tlw的所有widget的顶层.
+    对于需要显示在波形上方的 popup，如果它和波形同属一个tlw，则必须 openPopup 标记, 否则是否调用 openPopup 是可选的(详见约束).
+对现有代码的改动: 多实例 compositor
+约束(由于算法是overlay, 实际上就是overlay的约束; 引入overlay的原因是把节点数量多且不可加速的qt窗口树的合成变成节点数量少且可加速的合成): 
+    1,对于半透明 tlw 开窗的情况(如 QWidget::setOpacity 及 windows API: UpdateLayeredWindow), 
+    若调用了 openPopup 则下层 tlw 中被上层 tlw (半透明) 遮挡的部分无法看到(波形被裁减了),
+    否则, 半透明可正常看到(波形不会裁减).
+    2,对于非 tlw 开窗的情况,不受平台gui的影响, 波形始终被裁减.
+    
+模式2: 1 个 compositor 解决所有 tlw 及相关的合成(ui + wave + others)
+机制: 
+    在 linuxfb 及其变种 (mrofs) 中, 由于 os 缺少后端 gui，多个 tlw 的综合显示由 qt 负责.
+    波形屏位于所有tlw(所有widget)的顶层.
+    对于需要显示在波形上方的 popUp, 都需要调用 openPopup.
+对现有代码的改动: 合成时合成所有 tlw的backingstore ((而非只合成 1层 backingstore), 再合成波形.
+
+* 取消波形屏, 直接在 backingstore 上画波形
+    qt 窗口树画家算法的瓶颈问题, 可能比独立波形屏合成性能更差
+    结合光栅化性能改进才有意义
+    异步(update)改同步(repaint) 不是必须的, 结果可能更差
+    
+* 针对 cpu 性能受限的平台, 改进光栅化性能
+    对于不可加速的操作，lock共享内存，让 cpu 处理(raster paint engine)
+    对于可加速的操作，直接让 gpu 处理(pvr2d_paint_engine)
+    约束: 共享内存的性能, cache wb
+    
+********************** DONE ***************************
+* 统一接口
+   老接口: mrofs in QtGui, 适用于 dubhe, 接 2 个实现: glesv2 OR. pvr2d
+   新接口: mrofs in QtWidgets, 适用于 bigdipper(mrofs@xcb), cms2(mrofs@windows), mk(mrofs@pvr2d), N1(mrofs@pvr2d)
+   
+   
+   
+   
