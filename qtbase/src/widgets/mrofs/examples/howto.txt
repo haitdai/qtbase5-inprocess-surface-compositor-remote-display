@@ -1,5 +1,0 @@
-tar xf sipdialog.tar.bz2
-mv sipdialog <your_qt_example_dir>/qtbase/examples/widgets/dialogs/.
-<prepare_your_qt_environment_variables>
-cd <your_qt_example_dir>/qtbase/examples/widgets/dialogs/sipdialog/
-run qmake

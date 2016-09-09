@@ -1,1 +1,0 @@
-All src files in this directory take effects when QT_MROFS defined, further more, iview.h and iview.cpp take effects when QT_MIPI_ISP defined
